@@ -1,0 +1,76 @@
+<!-- Adapted from the Ractive.js clock example: http://www.ractivejs.org/examples/clock/ -->
+<polymer-element name="bar-chart">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .axis line {
+        shape-rendering: crispedges;
+        stroke: #eee;
+      }
+      .axis text {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 11px;
+        fill: #999;
+      }
+      text, tspan, textPath {
+        white-space: nowrap;
+      }
+      .bar rect {
+        fill: #bd380f;
+      }
+      .hover {
+        fill: #000;
+        opacity: .8;
+      }
+      .hover text {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        fill: white;
+        text-anchor: middle;
+      }
+    </style>
+    <svg id="svg">
+      <g transform="translate(30,10)">
+        <g class="y axis">
+          <template repeat="{{ y in yTicks | enumerate }}">
+            <g class="tick" transform="translate(0, {{ (yTicks.length - y.index - 1) * height / yTicks.length + 30 }})">
+              <line x2="{{ width }}" y2="0"></line>
+              <text x="-3" y="0" dy=".32em" style="text-anchor: end;">{{ y.value }}</text>
+            </g>
+          </template>
+          <template repeat="{{ x in xTicks | enumerate }}">
+            <g class="tick" transform="translate({{ x.index * width / (xTicks.length + 1) }}, 0)">
+              <line x2="0" y2="{{ height - 30 }}"></line>
+              <text y="{{ height - 20 }}" x="{{ width / (xTicks.length + 1) / 2 }}" dy=".71em" style="text-anchor: middle;">{{ x.value }}</text>
+            </g>
+          </template>
+          <template repeat="{{ d in data | enumerate }}">
+            <g class="bar" transform="translate({{ d.index * width / (data.length + 1) }}, 0)">
+              <rect
+                width="{{ width / (data.length + 1) * .8 }}" 
+                height="{{ d.value / yRange * height }}"
+                x="{{ width / (data.length + 1) * .1 }}"
+                y="{{ height - (d.value / yRange) * height - 30 }}"
+                on-mouseover="{{ mouseOver }}"
+                on-mouseout="{{ mouseOut }}"
+                data-index="{{ d.index }}"></rect>
+            </g>
+          </template>
+          <template if="{{ hoverElement != null }}">
+            <g class="hover"
+               transform="translate({{ hoverIndex * width / (xTicks.length + 1) - 50 }}, {{ height - (hoverData / yRange) * height - 80 }})">
+              <rect
+                pointer-events="none"
+                width="150"
+                height="40"></rect>
+              <text x="75" y="20">{{ hoverData }} </text>
+            </g>
+          </template>
+        </g>
+      </g>
+    </svg>
+  </template>
+  <script type="application/dart" src="bar_chart.dart"></script>
+</polymer-element>

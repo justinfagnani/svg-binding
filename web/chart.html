@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Chart Example</title>
+    <link rel="import" href="packages/svg_binding/bar_chart.html">
+    <style>
+      bar-chart {
+        display: block;
+        width: 800px;
+        height: 400px;
+      }
+    </style>
+  </head> 
+  <body>
+    <bar-chart id="chart" xLabel="X Axis" yLabel="Y Axis" yRange="7"></bar-chart>
+    <script type="application/dart" src="chart.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>
