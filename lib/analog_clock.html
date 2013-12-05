@@ -1,0 +1,90 @@
+<!-- Adapted from the Ractive.js clock example: http://www.ractivejs.org/examples/clock/ -->
+<polymer-element name="analog-clock">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .square {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+      }
+      
+      svg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      
+      .clock-face {
+        stroke: #333;
+        fill: white;
+      }
+      
+      .minor {
+        stroke: #999;
+        stroke-width: 0.5;
+      }
+      
+      .major {
+        stroke: #333;
+        stroke-width: 1;
+      }
+      
+      .hour {
+        stroke: #333;
+      }
+      
+      .minute {
+        stroke: #666;
+      }
+      
+      .second, .second-counterweight {
+        stroke: rgb(180,0,0);
+      }
+      
+      .second-counterweight {
+        stroke-width: 3;
+      }
+    </style>
+    <div class='square'> <!-- so the SVG keeps its aspect ratio -->
+      
+      <svg viewBox='0 0 100 100'>
+        
+        <!-- first create a group and move it to 50,50 so
+             all co-ords are relative to the center -->
+        <g transform='translate(50,50)'>
+          <circle class='clock-face' r='48'/>
+  
+          <!-- markers every minute (major markers every 5 minutes) -->
+          <template repeat="{{ i in minor }}">
+            <line class='minor' y1='42' y2='45'
+              transform='rotate( {{ 360 * i / minor.length }} )'/>
+          </template>
+  
+          <template repeat="{{ i in major }}">
+            <line class='major' y1='35' y2='45'
+              transform='rotate( {{ 360 * i / major.length }} )'/>
+          </template>
+  
+          <!-- hour hand -->
+          <line class='hour' y1='2' y2='-20'
+            transform='rotate({{ 30 * date.hour + date.minute / 2 }})'/>
+  
+          <!-- minute hand -->
+          <line class='minute' y1='4' y2='-30'
+            transform='rotate( {{ 6 * date.minute + date.second / 10 }} )'/>
+  
+          <!-- second hand -->
+          <g transform='rotate( {{ 6 * date.second }} )'>
+            <line class='second' y1='10' y2='-38'/>
+            <line class='second-counterweight' y1='10' y2='2'/>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </template>
+  <script type="application/dart" src="analog_clock.dart"></script>
+</polymer-element>

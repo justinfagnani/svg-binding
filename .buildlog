@@ -1,0 +1,39 @@
+---
+build.dart --machine --full
+
+build.dart finished [1231 ms]
+
+---
+build.dart --machine --changed=lib/analog_clock.dart --changed=lib/analog_clock.html --removed=web/analog_clock...
+[{"method":"error","params":{"file":"web/clock.html","message":"couldn't find imported asset \"web/analog_clock.html\" in package \"svg_template\".","line":7,"charStart":97,"charEnd":141}}]
+[{"method":"warning","params":{"file":"web/clock.html","message":"definition for Polymer element with tag name \"analog-clock\" not found.","line":12,"charStart":299,"charEnd":313}}]
+build.dart finished [1102 ms]
+
+---
+build.dart --machine --changed=pubspec.lock
+[{"method":"error","params":{"file":"web/clock.html","message":"couldn't find imported asset \"web/analog_clock.html\" in package \"svg_template\".","line":7,"charStart":97,"charEnd":141}}]
+[{"method":"warning","params":{"file":"web/clock.html","message":"definition for Polymer element with tag name \"analog-clock\" not found.","line":12,"charStart":299,"charEnd":313}}]
+build.dart finished [923 ms]
+
+---
+build.dart --machine --changed=web/clock.html
+[{"method":"error","params":{"file":"web/clock.html","message":"couldn't find imported asset \"lib/analog_clock.html\" in package \"svg-binding\".","line":7,"charStart":97,"charEnd":162}}]
+[{"method":"warning","params":{"file":"web/clock.html","message":"definition for Polymer element with tag name \"analog-clock\" not found.","line":12,"charStart":320,"charEnd":334}}]
+build.dart finished [945 ms]
+
+---
+build.dart --machine --changed=pubspec.yaml
+[{"method":"error","params":{"file":"web/clock.html","message":"couldn't find imported asset \"lib/analog_clock.html\" in package \"svg-binding\".","line":7,"charStart":97,"charEnd":162}}]
+[{"method":"warning","params":{"file":"web/clock.html","message":"definition for Polymer element with tag name \"analog-clock\" not found.","line":12,"charStart":320,"charEnd":334}}]
+build.dart finished [903 ms]
+
+---
+build.dart --machine --changed=web/clock.html
+
+build.dart finished [1389 ms]
+
+---
+build.dart --machine --changed=README.md
+
+build.dart finished [938 ms]
+

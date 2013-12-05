@@ -1,0 +1,8 @@
+name: svg_binding
+description: A sample Polymer application
+dependencies:
+    polymer: any
+    quiver: any
+transformers:
+- polymer:
+    entry_points: web/svg_template.html
